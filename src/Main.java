@@ -79,7 +79,14 @@ public class Main {
                     System.out.println("Option 2 selected.");
                     break;
                 case 3:
-                    System.out.println("Option 3 selected.");
+                    System.out.println("Reservations:");
+                    System.out.println("------------------------------");
+                    System.out.println("Ana García");
+                    System.out.println("Room: 100 - Single bed");
+                    System.out.println("Price: $135.0 price per night");
+                    System.out.println("Checkin Date: Sun Apr 23 2023");
+                    System.out.println("Checkout Date: Wed Apr 25 2023");
+                    System.out.println("------------------------------");
                     break;
                 default:
                     break;
