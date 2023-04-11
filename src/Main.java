@@ -13,7 +13,8 @@ public class Main {
 
             System.out.println("-------------------------------------------");
             System.out.println("1: Create an account");
-            System.out.println("2: Exit");
+            System.out.println("2: Admin");
+            System.out.println("3: Exit");
             System.out.println("-------------------------------------------");
             System.out.println("Please select a number for the menu option");
 
@@ -27,9 +28,12 @@ public class Main {
                     String lastName = sc.next();
                     break;
                 case 2:
+                    this.adminMenu();
+                    break;
+                case 3:
                     System.exit(0);
             }
-        } while (option != 2);
+        } while (option != 3);
     }
 
     private String getValidEmail() {
@@ -46,6 +50,26 @@ public class Main {
             }
         } while (error);
         return email;
+    }
+
+    private void adminMenu() {
+        int option;
+        do {
+            System.out.println("Admin Menu");
+            System.out.println("------------------------------");
+            System.out.println("1. See all Customers");
+            System.out.println("2. Back to Main Menu");
+            System.out.println("------------------------------");
+            System.out.println("Please select a number for the menu option");
+            option = sc.nextInt();
+            switch (option) {
+                case 1:
+                    System.out.println("Option 1 selected.");
+                    break;
+                default:
+                    break;
+            }
+        } while (option != 2);
     }
 
     public static void main(String[] args) {
