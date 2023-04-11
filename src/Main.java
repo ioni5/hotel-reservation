@@ -75,7 +75,12 @@ public class Main {
                     System.out.println("------------------------------");
                     break;
                 case 2:
-                    System.out.println("Option 2 selected.");
+                    System.out.println("Rooms:");
+                    System.out.println("------------------------------");
+                    System.out.println("Room Number: 100 Single bed Room Price: $135.0");
+                    System.out.println("Room Number: 105 Double bed Room Price: $215.0");
+                    System.out.println("Room Number: 110 Single bed Room Price: $135.0");
+                    System.out.println("------------------------------");
                     break;
                 default:
                     break;
