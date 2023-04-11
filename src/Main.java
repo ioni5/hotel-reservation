@@ -20,8 +20,7 @@ public class Main {
             option = sc.nextInt();
             switch (option) {
                 case 1:
-                    System.out.println("Enter Email format: name@domain.com");
-                    String email = sc.next();
+                    String email = this.getValidEmail();
                     System.out.println("First Name");
                     String firstName = sc.next();
                     System.out.println("Last Name");
@@ -31,6 +30,22 @@ public class Main {
                     System.exit(0);
             }
         } while (option != 2);
+    }
+
+    private String getValidEmail() {
+        String regex = "^(.)+@(.)+\\.com$";
+        Pattern pattern = Pattern.compile(regex);
+        boolean error = false;
+        String email;
+        do {
+            System.out.println("Enter Email format: name@domain.com");
+            email = sc.next();
+            error = !pattern.matcher(email).matches();
+            if (error) {
+                System.out.println("Error: Invalid Email format");
+            }
+        } while (error);
+        return email;
     }
 
     public static void main(String[] args) {
