@@ -64,7 +64,14 @@ public class Main {
             option = sc.nextInt();
             switch (option) {
                 case 1:
-                    System.out.println("Option 1 selected.");
+                    System.out.println("Customers:");
+                    System.out.println("------------------------------");
+                    System.out.println("First Name: Ana Last Name: García Email: ana.garcia23@example.com");
+                    System.out.println("First Name: Javier Last Name: Rodríguez Email: javier.rodriguez89@example.com");
+                    System.out.println("First Name: Laura Last Name: Sánchez Email: laura.sanchez67@example.com");
+                    System.out.println("First Name: Pedro Last Name: Martínez Email: pedro.martinez45@example.com");
+                    System.out.println("First Name: Marta Last Name: González Email: marta.gonzalez12@example.com");
+                    System.out.println("------------------------------");
                     break;
                 default:
                     break;
