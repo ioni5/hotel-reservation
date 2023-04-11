@@ -60,7 +60,8 @@ public class Main {
             System.out.println("1. See all Customers");
             System.out.println("2. See all Rooms");
             System.out.println("3. See all Reservations");
-            System.out.println("4. Back to Main Menu");
+            System.out.println("4. Add a Room");
+            System.out.println("5. Back to Main Menu");
             System.out.println("------------------------------");
             System.out.println("Please select a number for the menu option");
             option = sc.nextInt();
@@ -76,7 +77,12 @@ public class Main {
                     System.out.println("------------------------------");
                     break;
                 case 2:
-                    System.out.println("Option 2 selected.");
+                    System.out.println("Rooms:");
+                    System.out.println("------------------------------");
+                    System.out.println("Room Number: 100 Single bed Room Price: $135.0");
+                    System.out.println("Room Number: 105 Double bed Room Price: $215.0");
+                    System.out.println("Room Number: 110 Single bed Room Price: $135.0");
+                    System.out.println("------------------------------");
                     break;
                 case 3:
                     System.out.println("Reservations:");
@@ -88,10 +94,38 @@ public class Main {
                     System.out.println("Checkout Date: Wed Apr 25 2023");
                     System.out.println("------------------------------");
                     break;
+                case 4:
+                    this.addRoom();
+                    break;
                 default:
                     break;
             }
-        } while (option != 4);
+        } while (option != 5);
+    }
+
+    private void addRoom() {
+        do {
+            System.out.println("Enter room number");
+            int roomNumber = sc.nextInt();
+            System.out.println("Enter price per night");
+            int roomPrice = sc.nextInt();
+            System.out.println("Enter room type: 1 for single bed, 2 for double bed");
+            int roomType = sc.nextInt();
+        } while (this.getYesOrNot());
+    }
+
+    private boolean getYesOrNot() {
+        String yesOrNot;
+        boolean error = false;
+        System.out.println("Would you like to add another room y/n");
+        do {
+            yesOrNot = sc.next();
+            error = !yesOrNot.equalsIgnoreCase("y") && !yesOrNot.equalsIgnoreCase("n");
+            if (error) {
+                System.out.println("Please enter Y (Yes) or N (No)");
+            }
+        } while(error);
+        return yesOrNot.equalsIgnoreCase("y");
     }
 
     public static void main(String[] args) {
