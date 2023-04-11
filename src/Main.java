@@ -1,34 +1,23 @@
-import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import views.AdminMenu;
+import views.Console;
+import views.MainMenu;
 
 public class Main {
 
-    private static final Scanner sc = new Scanner(System.in);
+    private static final Console console = new Console();
 
     public void start() {
+        MainMenu mainMenu = new MainMenu();
         int option;
         do {
-            System.out.println("Welcome to the Hotel Reservation Application");
-
-            System.out.println("-------------------------------------------");
-            System.out.println("1: Create an account");
-            System.out.println("2: Admin");
-            System.out.println("3: Exit");
-            System.out.println("-------------------------------------------");
-            System.out.println("Please select a number for the menu option");
-
-            option = sc.nextInt();
+            mainMenu.show();
+            option = mainMenu.getOption();
             switch (option) {
                 case 1:
-                    String email = this.getValidEmail();
-                    System.out.println("First Name");
-                    String firstName = sc.next();
-                    System.out.println("Last Name");
-                    String lastName = sc.next();
+                    this.createAccount();
                     break;
                 case 2:
-                    this.adminMenu();
+                    this.showAdminMenu();
                     break;
                 case 3:
                     System.exit(0);
@@ -36,63 +25,21 @@ public class Main {
         } while (option != 3);
     }
 
-    private String getValidEmail() {
-        String regex = "^(.)+@(.)+\\.com$";
-        Pattern pattern = Pattern.compile(regex);
-        boolean error = false;
-        String email;
-        do {
-            System.out.println("Enter Email format: name@domain.com");
-            email = sc.next();
-            error = !pattern.matcher(email).matches();
-            if (error) {
-                System.out.println("Error: Invalid Email format");
-            }
-        } while (error);
-        return email;
-    }
-
-    private void adminMenu() {
+    private void showAdminMenu() {
+        AdminMenu adminMenu = new AdminMenu();
         int option;
         do {
-            System.out.println("Admin Menu");
-            System.out.println("------------------------------");
-            System.out.println("1. See all Customers");
-            System.out.println("2. See all Rooms");
-            System.out.println("3. See all Reservations");
-            System.out.println("4. Add a Room");
-            System.out.println("5. Back to Main Menu");
-            System.out.println("------------------------------");
-            System.out.println("Please select a number for the menu option");
-            option = sc.nextInt();
+            adminMenu.show();
+            option = adminMenu.getOption();
             switch (option) {
                 case 1:
-                    System.out.println("Customers:");
-                    System.out.println("------------------------------");
-                    System.out.println("First Name: Ana Last Name: García Email: ana.garcia23@example.com");
-                    System.out.println("First Name: Javier Last Name: Rodríguez Email: javier.rodriguez89@example.com");
-                    System.out.println("First Name: Laura Last Name: Sánchez Email: laura.sanchez67@example.com");
-                    System.out.println("First Name: Pedro Last Name: Martínez Email: pedro.martinez45@example.com");
-                    System.out.println("First Name: Marta Last Name: González Email: marta.gonzalez12@example.com");
-                    System.out.println("------------------------------");
+                    this.showAllCustomers();
                     break;
                 case 2:
-                    System.out.println("Rooms:");
-                    System.out.println("------------------------------");
-                    System.out.println("Room Number: 100 Single bed Room Price: $135.0");
-                    System.out.println("Room Number: 105 Double bed Room Price: $215.0");
-                    System.out.println("Room Number: 110 Single bed Room Price: $135.0");
-                    System.out.println("------------------------------");
+                    this.showAllRooms();
                     break;
                 case 3:
-                    System.out.println("Reservations:");
-                    System.out.println("------------------------------");
-                    System.out.println("Ana García");
-                    System.out.println("Room: 100 - Single bed");
-                    System.out.println("Price: $135.0 price per night");
-                    System.out.println("Checkin Date: Sun Apr 23 2023");
-                    System.out.println("Checkout Date: Wed Apr 25 2023");
-                    System.out.println("------------------------------");
+                    this.showAllReservations();
                     break;
                 case 4:
                     this.addRoom();
@@ -103,29 +50,54 @@ public class Main {
         } while (option != 5);
     }
 
-    private void addRoom() {
-        do {
-            System.out.println("Enter room number");
-            int roomNumber = sc.nextInt();
-            System.out.println("Enter price per night");
-            int roomPrice = sc.nextInt();
-            System.out.println("Enter room type: 1 for single bed, 2 for double bed");
-            int roomType = sc.nextInt();
-        } while (this.getYesOrNot());
+    private void createAccount() {
+        String email = console.readEmail();
+        console.write("First Name");
+        String firstName = console.read();
+        console.write("Last Name");
+        String lastName = console.read();
     }
 
-    private boolean getYesOrNot() {
-        String yesOrNot;
-        boolean error = false;
-        System.out.println("Would you like to add another room y/n");
+    private void showAllCustomers() {
+        console.write("Customers:");
+        console.write("------------------------------");
+        console.write("First Name: Ana Last Name: García Email: ana.garcia23@example.com");
+        console.write("First Name: Javier Last Name: Rodríguez Email: javier.rodriguez89@example.com");
+        console.write("First Name: Laura Last Name: Sánchez Email: laura.sanchez67@example.com");
+        console.write("First Name: Pedro Last Name: Martínez Email: pedro.martinez45@example.com");
+        console.write("First Name: Marta Last Name: González Email: marta.gonzalez12@example.com");
+        console.write("------------------------------");
+    }
+
+    private void showAllRooms() {
+        console.write("Rooms:");
+        console.write("------------------------------");
+        console.write("Room Number: 100 Single bed Room Price: $135.0");
+        console.write("Room Number: 105 Double bed Room Price: $215.0");
+        console.write("Room Number: 110 Single bed Room Price: $135.0");
+        console.write("------------------------------");
+    }
+
+    private void showAllReservations() {
+        console.write("Reservations:");
+        console.write("------------------------------");
+        console.write("Ana García");
+        console.write("Room: 100 - Single bed");
+        console.write("Price: $135.0 price per night");
+        console.write("Checkin Date: Sun Apr 23 2023");
+        console.write("Checkout Date: Wed Apr 25 2023");
+        console.write("------------------------------");
+    }
+
+    private void addRoom() {
         do {
-            yesOrNot = sc.next();
-            error = !yesOrNot.equalsIgnoreCase("y") && !yesOrNot.equalsIgnoreCase("n");
-            if (error) {
-                System.out.println("Please enter Y (Yes) or N (No)");
-            }
-        } while(error);
-        return yesOrNot.equalsIgnoreCase("y");
+            console.write("Enter room number");
+            int roomNumber = console.readInt();
+            console.write("Enter price per night");
+            int roomPrice = console.readInt();
+            console.write("Enter room type: 1 for single bed, 2 for double bed");
+            int roomType = console.readInt();
+        } while (console.readYesOrNot());
     }
 
     public static void main(String[] args) {
