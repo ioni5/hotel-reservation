@@ -59,8 +59,9 @@ public class Main {
             System.out.println("------------------------------");
             System.out.println("1. See all Customers");
             System.out.println("2. See all Rooms");
-            System.out.println("3. Add a Room");
-            System.out.println("4. Back to Main Menu");
+            System.out.println("3. See all Reservations");
+            System.out.println("4. Add a Room");
+            System.out.println("5. Back to Main Menu");
             System.out.println("------------------------------");
             System.out.println("Please select a number for the menu option");
             option = sc.nextInt();
@@ -84,12 +85,22 @@ public class Main {
                     System.out.println("------------------------------");
                     break;
                 case 3:
+                    System.out.println("Reservations:");
+                    System.out.println("------------------------------");
+                    System.out.println("Ana García");
+                    System.out.println("Room: 100 - Single bed");
+                    System.out.println("Price: $135.0 price per night");
+                    System.out.println("Checkin Date: Sun Apr 23 2023");
+                    System.out.println("Checkout Date: Wed Apr 25 2023");
+                    System.out.println("------------------------------");
+                    break;
+                case 4:
                     this.addRoom();
                     break;
                 default:
                     break;
             }
-        } while (option != 4);
+        } while (option != 5);
     }
 
     private void addRoom() {
