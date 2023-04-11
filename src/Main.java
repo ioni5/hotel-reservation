@@ -59,7 +59,8 @@ public class Main {
             System.out.println("------------------------------");
             System.out.println("1. See all Customers");
             System.out.println("2. See all Rooms");
-            System.out.println("3. Back to Main Menu");
+            System.out.println("3. See all Reservations");
+            System.out.println("4. Back to Main Menu");
             System.out.println("------------------------------");
             System.out.println("Please select a number for the menu option");
             option = sc.nextInt();
@@ -77,10 +78,13 @@ public class Main {
                 case 2:
                     System.out.println("Option 2 selected.");
                     break;
+                case 3:
+                    System.out.println("Option 3 selected.");
+                    break;
                 default:
                     break;
             }
-        } while (option != 3);
+        } while (option != 4);
     }
 
     public static void main(String[] args) {
