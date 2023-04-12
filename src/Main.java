@@ -14,15 +14,18 @@ public class Main {
             option = mainMenu.getOption();
             switch (option) {
                 case 1:
-                    this.createAccount();
+                    this.findRoomByCheckinAndCheckout();
                     break;
                 case 2:
-                    this.showAdminMenu();
+                    this.createAccount();
                     break;
                 case 3:
+                    this.showAdminMenu();
+                    break;
+                case 4:
                     System.exit(0);
             }
-        } while (option != 3);
+        } while (option != 4);
     }
 
     private void showAdminMenu() {
@@ -48,6 +51,14 @@ public class Main {
                     break;
             }
         } while (option != 5);
+    }
+
+    private void findRoomByCheckinAndCheckout() {
+        console.write("Enter CheckIn Date mm/dd/yyyy example 02/01/2023");
+        String checkinDate = console.read();
+        console.write("Enter CheckOut Date mm/dd/yyyy example 02/01/2023");
+        String checkoutDate = console.read();
+        console.write("Room Number: 100 Single bed Room Price: $135.0");
     }
 
     private void createAccount() {
