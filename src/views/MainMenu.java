@@ -5,7 +5,7 @@ public class MainMenu {
     private static final Console console = new Console();
 
     private static final String[] OPTIONS = {
-        "1. Find room",
+        "1. Find and reserve a room",
         "2. Create an account",
         "3. Admin",
         "4. Exit"

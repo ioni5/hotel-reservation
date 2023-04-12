@@ -52,7 +52,6 @@ public class Console {
     public boolean readYesOrNot() {
         String yesOrNot;
         boolean error = false;
-        System.out.println("Would you like to add another room y/n");
         do {
             yesOrNot = sc.next();
             error = !yesOrNot.equalsIgnoreCase("y") && !yesOrNot.equalsIgnoreCase("n");
