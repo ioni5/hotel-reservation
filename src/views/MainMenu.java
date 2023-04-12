@@ -5,9 +5,10 @@ public class MainMenu {
     private static final Console console = new Console();
 
     private static final String[] OPTIONS = {
-        "1. Create an account",
-        "2. Admin",
-        "3. Exit"
+        "1. Reserve a room",
+        "2. Create an account",
+        "3. Admin",
+        "4. Exit"
     };
 
     public void show() {
