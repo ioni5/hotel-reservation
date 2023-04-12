@@ -14,6 +14,7 @@ public class Main {
             option = mainMenu.getOption();
             switch (option) {
                 case 1:
+                    this.findRoomByCheckinAndCheckout();
                     this.reserveRoom();
                     break;
                 case 2:
@@ -26,27 +27,6 @@ public class Main {
                     System.exit(0);
             }
         } while (option != 4);
-    }
-
-    private void reserveRoom() {
-        console.write("Do you have an account with us? y/n");
-        boolean isRegistered = console.readYesOrNot();
-        if (!isRegistered) {
-            return;
-        }
-        String customerEmail = console.readEmail();
-        console.write("What room number would you like to reserve");
-        int roomNumber = console.readInt();
-        console.write("Enter CheckIn Date mm/dd/yyyy example 02/01/2023");
-        String checkinDate = console.read();
-        console.write("Enter CheckOut Date mm/dd/yyyy example 02/01/2023");
-        String checkoutDate = console.read();
-        console.write("Reservation");
-        console.write("Ana García");
-        console.write("Room: 100 - Single bed");
-        console.write("Price: $135.0 price per night");
-        console.write("Checkin Date: Sun Jan 10 2023");
-        console.write("Checkout Date: Wed Jan 20 2023");
     }
 
     private void showAdminMenu() {
@@ -72,6 +52,31 @@ public class Main {
                     break;
             }
         } while (option != 5);
+    }
+
+    private void findRoomByCheckinAndCheckout() {
+        console.write("Enter CheckIn Date mm/dd/yyyy example 02/01/2023");
+        String checkinDate = console.read();
+        console.write("Enter CheckOut Date mm/dd/yyyy example 02/01/2023");
+        String checkoutDate = console.read();
+        console.write("Room Number: 100 Single bed Room Price: $135.0");
+    }
+
+    private void reserveRoom() {
+        console.write("Do you have an account with us? y/n");
+        boolean isRegistered = console.readYesOrNot();
+        if (!isRegistered) {
+            return;
+        }
+        String customerEmail = console.readEmail();
+        console.write("What room number would you like to reserve");
+        int roomNumber = console.readInt();
+        console.write("Reservation");
+        console.write("Ana García");
+        console.write("Room: 100 - Single bed");
+        console.write("Price: $135.0 price per night");
+        console.write("Checkin Date: Sun Jan 10 2023");
+        console.write("Checkout Date: Wed Jan 20 2023");
     }
 
     private void createAccount() {
