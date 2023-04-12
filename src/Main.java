@@ -1,10 +1,18 @@
+import resources.HotelResource;
 import views.AdminMenu;
 import views.Console;
 import views.MainMenu;
 
 public class Main {
 
-    private static final Console console = new Console();
+    private HotelResource hotelResource;
+
+    private Console console;
+
+    public Main() {
+        hotelResource = HotelResource.getInstance();
+        console = new Console();
+    }
 
     public void start() {
         MainMenu mainMenu = new MainMenu();
@@ -85,6 +93,7 @@ public class Main {
         String firstName = console.read();
         console.write("Last Name");
         String lastName = console.read();
+        hotelResource.createACustomer(firstName, lastName, email);
     }
 
     private void showAllCustomers() {
