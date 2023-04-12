@@ -4,7 +4,7 @@ public abstract class Room implements IRoom {
     
     private String number;
 
-    private Double price;
+    protected Double price;
 
     private RoomType type;
 
