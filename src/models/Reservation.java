@@ -19,6 +19,10 @@ public class Reservation {
         this.checkOutDate = checkOutDate;
     }
 
+    public boolean isFreeTo(Date checkInDate, Date checkOutDate) {
+        return this.checkOutDate.compareTo(checkInDate) < 0 || this.checkInDate.compareTo(checkOutDate) > 0;
+    }
+
     @Override
     public String toString() {
         return customer
