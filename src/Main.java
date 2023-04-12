@@ -14,15 +14,39 @@ public class Main {
             option = mainMenu.getOption();
             switch (option) {
                 case 1:
-                    this.createAccount();
+                    this.reserveRoom();
                     break;
                 case 2:
-                    this.showAdminMenu();
+                    this.createAccount();
                     break;
                 case 3:
+                    this.showAdminMenu();
+                    break;
+                case 4:
                     System.exit(0);
             }
-        } while (option != 3);
+        } while (option != 4);
+    }
+
+    private void reserveRoom() {
+        console.write("Do you have an account with us? y/n");
+        boolean isRegistered = console.readYesOrNot();
+        if (!isRegistered) {
+            return;
+        }
+        String customerEmail = console.readEmail();
+        console.write("What room number would you like to reserve");
+        int roomNumber = console.readInt();
+        console.write("Enter CheckIn Date mm/dd/yyyy example 02/01/2023");
+        String checkinDate = console.read();
+        console.write("Enter CheckOut Date mm/dd/yyyy example 02/01/2023");
+        String checkoutDate = console.read();
+        console.write("Reservation");
+        console.write("Ana García");
+        console.write("Room: 100 - Single bed");
+        console.write("Price: $135.0 price per night");
+        console.write("Checkin Date: Sun Jan 10 2023");
+        console.write("Checkout Date: Wed Jan 20 2023");
     }
 
     private void showAdminMenu() {
@@ -97,6 +121,7 @@ public class Main {
             int roomPrice = console.readInt();
             console.write("Enter room type: 1 for single bed, 2 for double bed");
             int roomType = console.readInt();
+            console.write("Would you like to add another room y/n");
         } while (console.readYesOrNot());
     }
 
