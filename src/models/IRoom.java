@@ -10,4 +10,6 @@ public interface IRoom {
 
     public boolean isFree();
     
+    public void setFree(boolean isFree);
+    
 }

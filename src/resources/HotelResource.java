@@ -8,6 +8,7 @@ import models.IRoom;
 import models.Reservation;
 import services.CustomerService;
 import services.ReservationService;
+import services.RoomFinderService;
 import services.RoomService;
 
 public class HotelResource {
@@ -18,11 +19,15 @@ public class HotelResource {
 
     private ReservationService reservationService;
 
+    private RoomFinderService roomFinderService;
+
     private RoomService roomService;
 
     private HotelResource() {
         customerService = CustomerService.getInstance();
         reservationService = ReservationService.getInstance();
+        roomService = RoomService.getInstance();
+        roomFinderService = new RoomFinderService();
     }
 
     public void createACustomer(String firstName, String lastName, String email) {
@@ -44,7 +49,7 @@ public class HotelResource {
     }
 
     public Collection<IRoom> findARoom(Date checkInDate, Date checkOutDate) {
-        return reservationService.findRooms(checkInDate, checkOutDate);
+        return roomFinderService.findRooms(checkInDate, checkOutDate);
     }
 
     public IRoom getRoom(String number) {

@@ -79,13 +79,18 @@ public class Main {
         String checkin = console.read();
         console.write("Enter CheckOut Date mm/dd/yyyy example 02/01/2023");
         String checkout = console.read();
-        console.write("Room Number: 100 Single bed Room Price: $135.0");
-        Date checkinDate;
-        Date checkoutDate;
+        Date checkinDate = null;
+        Date checkoutDate = null;
         try {
             checkinDate = new SimpleDateFormat("M/dd/yyyy").parse(checkin);
             checkoutDate = new SimpleDateFormat("M/dd/yyyy").parse(checkout);
         } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
+        Collection<IRoom> rooms = hotelResource.findARoom(checkinDate, checkoutDate);
+        for (IRoom room : rooms) {
+            console.write(room.toString());
+        }
         this.reserveRoom(checkinDate, checkoutDate);
     }
 
@@ -151,7 +156,7 @@ public class Main {
             int roomPrice = console.readInt();
             console.write("Enter room type: 1 for single bed, 2 for double bed");
             int roomType = console.readInt();
-            adminResource.addRoom(Integer.toString(roomNumber), RoomType.values()[roomType], roomPrice);
+            adminResource.addRoom(Integer.toString(roomNumber), RoomType.values()[roomType - 1], roomPrice);
             console.write("Would you like to add another room y/n");
         } while (console.readYesOrNot());
     }

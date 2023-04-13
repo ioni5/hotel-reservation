@@ -24,6 +24,8 @@ public class AdminResource {
 
     private AdminResource() {
         roomService = RoomService.getInstance();
+        customerService = CustomerService.getInstance();
+        reservationService = ReservationService.getInstance();
     }
 
     public Customer getCustomer(String email) {

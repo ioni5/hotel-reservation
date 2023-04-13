@@ -1,7 +1,9 @@
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import models.IRoom;
@@ -33,5 +35,15 @@ public class RoomService {
             instance = new RoomService();
         }
         return instance;
+    }
+
+    public Collection<IRoom> getFreeRooms() {
+        List<IRoom> freeRooms = new ArrayList<>();
+        for (IRoom room : rooms.values()) {
+            if (room.isFree()) {
+                freeRooms.add(room);
+            }
+        }
+        return freeRooms;
     }
 }

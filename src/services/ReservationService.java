@@ -21,8 +21,10 @@ public class ReservationService {
     }
 
     public Reservation reserveARoom(Customer customer, IRoom room, Date checkInDate, Date checkOutDate) {
+        room.setFree(false);
         Reservation reservation = new Reservation(customer, room, checkInDate, checkOutDate);
         Collection<Reservation> reservationList = reservationMap.getOrDefault(customer, new ArrayList<>());        
+        reservationList.add(reservation);
         reservationMap.put(customer, reservationList);
         return reservation;
     }
