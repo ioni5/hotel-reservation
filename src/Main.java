@@ -1,3 +1,5 @@
+import models.RoomType;
+import resources.AdminResource;
 import resources.HotelResource;
 import views.AdminMenu;
 import views.Console;
@@ -7,10 +9,13 @@ public class Main {
 
     private HotelResource hotelResource;
 
+    private AdminResource adminResource;
+
     private Console console;
 
     public Main() {
         hotelResource = HotelResource.getInstance();
+        adminResource = AdminResource.getInstance();
         console = new Console();
     }
 
@@ -135,6 +140,7 @@ public class Main {
             int roomPrice = console.readInt();
             console.write("Enter room type: 1 for single bed, 2 for double bed");
             int roomType = console.readInt();
+            adminResource.addRoom(Integer.toString(roomNumber), RoomType.values()[roomType], roomPrice);
             console.write("Would you like to add another room y/n");
         } while (console.readYesOrNot());
     }
