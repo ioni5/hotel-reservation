@@ -1,5 +1,6 @@
 package resources;
 
+import java.util.Collection;
 import java.util.Date;
 
 import models.Customer;
@@ -32,6 +33,15 @@ public class HotelResource {
     public Reservation bookARoom(String email, IRoom room, Date checkInDate, Date checkOutDate) {
         Customer customer = this.getCustomer(email);
         return reservationService.reserveARoom(customer, room, checkInDate, checkOutDate);
+    }
+
+    public Collection<Reservation> getCustomerReservation(String email) {
+        Customer customer = customerService.getCustomer(email);
+        return reservationService.getReservations(customer);
+    }
+
+    public Collection<IRoom> findARoom(Date checkInDate, Date checkOutDate) {
+        return reservationService.findRooms(checkInDate, checkOutDate);
     }
 
     public static HotelResource getInstance() {
