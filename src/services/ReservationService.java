@@ -2,9 +2,8 @@ package services;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 import models.Customer;
@@ -18,7 +17,6 @@ public class ReservationService {
     private Map<Customer, Collection<Reservation>> reservationMap;
 
     private ReservationService() {
-        rooms = new HashMap<>();
         reservationMap = new HashMap<>();
     }
 
@@ -39,7 +37,7 @@ public class ReservationService {
 
     public Collection<IRoom> findRooms(Date checkInDate, Date checkOuDate) {
         Collection<IRoom> roomList = new ArrayList<>();
-        for (Reservaction reservation : this.getAllReservations()) {
+        for (Reservation reservation : this.getAllReservations()) {
             if (reservation.isFreeTo(checkInDate, checkOuDate)) {
                 roomList.add(reservation.getRoom());
             }
@@ -51,7 +49,7 @@ public class ReservationService {
         return reservationMap.get(customer);
     }
 
-    public static getInstance() {
+    public static ReservationService getInstance() {
         if (instance == null) {
             instance = new ReservationService();
         }

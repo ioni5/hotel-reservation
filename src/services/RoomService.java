@@ -1,5 +1,11 @@
 package services;
 
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
+import models.IRoom;
+
 public class RoomService {
     
     private static RoomService instance;
@@ -8,7 +14,6 @@ public class RoomService {
     
     private RoomService() {
         rooms = new HashMap<>();
-        reservationMap = new HashMap<>();
     }
 
     public void addRoom(IRoom room) {
@@ -23,7 +28,7 @@ public class RoomService {
         return rooms.values();
     }
 
-    public static getInstance() {
+    public static RoomService getInstance() {
         if (instance == null) {
             instance = new RoomService();
         }
