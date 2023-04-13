@@ -1,3 +1,11 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Collection;
+import java.util.Date;
+
+import models.Customer;
+import models.IRoom;
+import models.Reservation;
 import models.RoomType;
 import resources.AdminResource;
 import resources.HotelResource;
@@ -28,7 +36,6 @@ public class Main {
             switch (option) {
                 case 1:
                     this.findRoomByCheckinAndCheckout();
-                    this.reserveRoom();
                     break;
                 case 2:
                     this.createAccount();
@@ -69,13 +76,20 @@ public class Main {
 
     private void findRoomByCheckinAndCheckout() {
         console.write("Enter CheckIn Date mm/dd/yyyy example 02/01/2023");
-        String checkinDate = console.read();
+        String checkin = console.read();
         console.write("Enter CheckOut Date mm/dd/yyyy example 02/01/2023");
-        String checkoutDate = console.read();
+        String checkout = console.read();
         console.write("Room Number: 100 Single bed Room Price: $135.0");
+        Date checkinDate;
+        Date checkoutDate;
+        try {
+            checkinDate = new SimpleDateFormat("M/dd/yyyy").parse(checkin);
+            checkoutDate = new SimpleDateFormat("M/dd/yyyy").parse(checkout);
+        } catch (ParseException ex) {
+        this.reserveRoom(checkinDate, checkoutDate);
     }
 
-    private void reserveRoom() {
+    private void reserveRoom(Date checkinDate, Date checkoutDate) {
         console.write("Do you have an account with us? y/n");
         boolean isRegistered = console.readYesOrNot();
         if (!isRegistered) {
@@ -84,12 +98,10 @@ public class Main {
         String customerEmail = console.readEmail();
         console.write("What room number would you like to reserve");
         int roomNumber = console.readInt();
+        IRoom room = hotelResource.getRoom(Integer.toString(roomNumber));
+        Reservation reservation = hotelResource.bookARoom(customerEmail, room, checkinDate, checkoutDate);
         console.write("Reservation");
-        console.write("Ana García");
-        console.write("Room: 100 - Single bed");
-        console.write("Price: $135.0 price per night");
-        console.write("Checkin Date: Sun Jan 10 2023");
-        console.write("Checkout Date: Wed Jan 20 2023");
+        console.write(reservation.toString());
     }
 
     private void createAccount() {
@@ -102,33 +114,32 @@ public class Main {
     }
 
     private void showAllCustomers() {
+        Collection<Customer> customers= adminResource.getAllCustomer();
         console.write("Customers:");
         console.write("------------------------------");
-        console.write("First Name: Ana Last Name: García Email: ana.garcia23@example.com");
-        console.write("First Name: Javier Last Name: Rodríguez Email: javier.rodriguez89@example.com");
-        console.write("First Name: Laura Last Name: Sánchez Email: laura.sanchez67@example.com");
-        console.write("First Name: Pedro Last Name: Martínez Email: pedro.martinez45@example.com");
-        console.write("First Name: Marta Last Name: González Email: marta.gonzalez12@example.com");
+        for (Customer customer : customers) {
+            console.write(customer.toString());
+        }
         console.write("------------------------------");
     }
 
     private void showAllRooms() {
+        Collection<IRoom> rooms = adminResource.getAllRooms();
         console.write("Rooms:");
         console.write("------------------------------");
-        console.write("Room Number: 100 Single bed Room Price: $135.0");
-        console.write("Room Number: 105 Double bed Room Price: $215.0");
-        console.write("Room Number: 110 Single bed Room Price: $135.0");
+        for (IRoom room : rooms) {
+            console.write(room.toString());
+        }
         console.write("------------------------------");
     }
 
     private void showAllReservations() {
+        Collection<Reservation> reservations = adminResource.getAllReservations();
         console.write("Reservations:");
         console.write("------------------------------");
-        console.write("Ana García");
-        console.write("Room: 100 - Single bed");
-        console.write("Price: $135.0 price per night");
-        console.write("Checkin Date: Sun Apr 23 2023");
-        console.write("Checkout Date: Wed Apr 25 2023");
+        for (Reservation reservation : reservations) {
+            console.write(reservation.toString());
+        }
         console.write("------------------------------");
     }
 

@@ -8,6 +8,7 @@ import models.IRoom;
 import models.Reservation;
 import services.CustomerService;
 import services.ReservationService;
+import services.RoomService;
 
 public class HotelResource {
 
@@ -16,6 +17,8 @@ public class HotelResource {
     private CustomerService customerService;
 
     private ReservationService reservationService;
+
+    private RoomService roomService;
 
     private HotelResource() {
         customerService = CustomerService.getInstance();
@@ -42,6 +45,10 @@ public class HotelResource {
 
     public Collection<IRoom> findARoom(Date checkInDate, Date checkOutDate) {
         return reservationService.findRooms(checkInDate, checkOutDate);
+    }
+
+    public IRoom getRoom(String number) {
+        return roomService.getARoom(number);
     }
 
     public static HotelResource getInstance() {
