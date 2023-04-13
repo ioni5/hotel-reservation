@@ -1,6 +1,6 @@
 package models;
 
-public abstract class Room implements IRoom {
+public class Room implements IRoom {
     
     private String number;
 
@@ -10,7 +10,7 @@ public abstract class Room implements IRoom {
 
     private boolean isFree;
 
-    protected Room(String number, Double price, RoomType type) {
+    public Room(String number, Double price, RoomType type) {
         this.number = number;
         this.price = price;
         this.type = type;
